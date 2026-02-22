@@ -1,0 +1,136 @@
+:root {
+  --bg: #f8f4e7;
+  --paper: #fffdf6;
+  --ink: #1f2937;
+  --accent: #b45309;
+  --accent-dark: #7c2d12;
+  --line: #e5d9bc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: radial-gradient(circle at top right, #ffe7a8, var(--bg) 40%);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.wrap {
+  width: min(920px, 92vw);
+  margin: 48px auto;
+  display: grid;
+  gap: 20px;
+}
+
+.intro h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #111827;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  letter-spacing: 0.02em;
+}
+
+.intro-desc {
+  margin: 8px 0 0;
+  max-width: 760px;
+  line-height: 1.6;
+  color: #374151;
+}
+
+.banner-box {
+  background: var(--accent);
+  color: #fff9ec;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.banner-text {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.5;
+  font-weight: 700;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  word-break: break-word;
+}
+
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.time-box p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.time-box strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.8rem;
+}
+
+.time-box small {
+  display: block;
+  color: #5f6368;
+}
+
+.claim-form {
+  margin-top: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.claim-form label {
+  font-weight: 700;
+}
+
+.claim-form input {
+  padding: 11px 12px;
+  border: 1px solid #c8c8c8;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.claim-form button {
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  background: var(--accent-dark);
+  color: #fff;
+  cursor: pointer;
+}
+
+.claim-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.status {
+  min-height: 1.4em;
+  margin: 14px 0 0;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    margin: 20px auto;
+  }
+
+  .banner-box,
+  .panel {
+    padding: 18px;
+  }
+
+  .banner-text {
+    font-size: 1.1rem;
+  }
+}

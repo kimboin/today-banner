@@ -1,0 +1,10 @@
+{
+  "name": "today-banner",
+  "version": "1.0.0",
+  "description": "Daily first-come banner lock website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT"
+}
