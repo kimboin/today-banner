@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>하루 1명 현수막</title>
+    <title>TodayBanner</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Noto+Sans+KR:wght@400;500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/style.css" />
@@ -15,29 +15,37 @@
   <body>
     <main class="wrap">
       <section class="intro">
-        <h1>Today's Banner</h1>
         <p class="intro-desc">
-          이 사이트는 하루에 한 사람만 먼저 문구를 등록해 배너를 선점할 수 있습니다.
-          선점되면 당일에는 수정할 수 없고, 한국시간 기준으로 날짜가 바뀌면 자동으로 초기화됩니다.
+          One person. One banner. Every day.
+          Be the first to claim it. Once locked, it stays until midnight.
+        </p>
+        <p class="intro-sub">
+          Claim the day before anyone else.
+          <span class="neon-sub-accent">Only one banner survives until midnight.</span>
         </p>
       </section>
 
+      <p class="banner-label">TODAY'S LIVE BANNER</p>
       <section class="banner-box">
-        <p id="bannerText" class="banner-text">아직 아무도 선점하지 않았습니다.</p>
+        <p id="bannerText" class="banner-text">Awaiting today's champion...</p>
       </section>
 
-      <section class="panel">
-        <div class="time-box">
-          <p>현재 시간 (한국시간 기준)</p>
-          <strong id="clock">--:--:--</strong>
-          <small id="dateLabel">----</small>
-          <small id="tzLabel">TZ: -</small>
-        </div>
+      <div class="time-box">
+        <p>Time until reset</p>
+        <strong id="minutesLeft">--h --m --s</strong>
+        <small id="resetInfo">Resets daily at 00:00 KST (UTC+9)</small>
+      </div>
+      <div class="share-box">
+        <button type="button" id="shareBtn" class="share-btn">Copy Share Link</button>
+        <small id="shareStatus" class="share-status"></small>
+      </div>
 
+      <section class="panel">
         <form id="claimForm" class="claim-form">
-          <label for="textInput">현수막 문구 (최대 120자)</label>
-          <input id="textInput" name="text" maxlength="120" placeholder="오늘의 문구를 입력하세요" required />
-          <button type="submit" id="submitBtn">오늘 현수막 선점하기</button>
+          <label for="textInput">Banner Message (max 40 characters)</label>
+          <input id="textInput" name="text" maxlength="40" placeholder="Enter today's message" required />
+          <small id="charCount" class="char-count">0 / 40</small>
+          <button type="submit" id="submitBtn">Claim Today's Banner</button>
         </form>
 
         <p id="status" class="status"></p>

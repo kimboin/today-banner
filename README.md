@@ -1,31 +1,54 @@
-# 하루 1명 현수막 사이트
+# Today Banner (Serverless)
 
-텍스트를 먼저 입력한 한 사람만 하루 동안 현수막을 선점할 수 있는 프로젝트입니다.
-날짜가 바뀌면 자동으로 초기화되어 다시 선점 가능합니다.
+One person can claim the banner each day. After midnight (by configured timezone), a new claim is available.
 
-## 기능
+## Stack
+- Frontend + API: Vercel
+- Database: Supabase Postgres
+- Repository/CI: GitHub
 
-- 당일 최초 1회만 텍스트 등록 가능
-- 등록 이후 당일에는 수정/재등록 불가
-- 날짜 변경 시 자동 리셋
-- 현재 시간 표시
+## Project Structure
+- `public/`: static frontend (`index.html`, `style.css`, `app.js`)
+- `api/`: Vercel serverless API routes
+  - `api/state.js`
+  - `api/claim.js`
+- `api/_lib/`: shared helpers (DB, time, HTTP)
+- `supabase/schema.sql`: DB schema
+- `vercel.json`: routing config
 
-## 실행 방법
+## Environment Variables
+Set these in Vercel Project Settings (and locally for `vercel dev`):
 
-```bash
-cd today-banner
-npm start
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `RESET_TIMEZONE` (default: `Asia/Seoul`)
+
+## Supabase Setup
+Run SQL from `supabase/schema.sql`:
+
+```sql
+create table if not exists public.daily_banner_claims (
+  date_key text primary key,
+  text varchar(40) not null,
+  claimed_at timestamptz not null default now()
+);
 ```
 
-브라우저에서 `http://localhost:4000` 접속.
-
-## 환경 변수
-
-- `PORT`: 서버 포트 (기본값 `4000`)
-- `HOST`: 서버 바인딩 주소 (기본값 `0.0.0.0`, 외부 접속 가능)
-
-예시:
+## Local Development
 
 ```bash
-HOST=0.0.0.0 PORT=4000 npm start
+npm install
+npm run dev
 ```
+
+Open `http://localhost:3000` (default `vercel dev` port).
+
+## API Summary
+- `GET /api/state`: returns today's banner state
+- `POST /api/claim`: claim today's banner (`{ "text": "..." }`)
+
+## Deployment
+1. Push to GitHub.
+2. Import repo in Vercel.
+3. Configure environment variables.
+4. Deploy.

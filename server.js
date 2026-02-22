@@ -4,7 +4,7 @@ const path = require("path");
 
 const PORT = process.env.PORT || 4000;
 const HOST = process.env.HOST || "0.0.0.0";
-const TIMEZONE = "Asia/Seoul";
+const TIMEZONE = process.env.RESET_TIMEZONE || "Asia/Seoul";
 const DATA_DIR = path.join(__dirname, "data");
 const DATA_FILE = path.join(DATA_DIR, "state.json");
 const PUBLIC_DIR = path.join(__dirname, "public");
@@ -139,17 +139,17 @@ const server = http.createServer(async (req, res) => {
       const input = String(body.text || "").trim();
 
       if (!input) {
-        return sendJson(res, 400, { message: "텍스트를 입력해 주세요." });
+        return sendJson(res, 400, { message: "Please enter a message." });
       }
 
-      if (input.length > 120) {
-        return sendJson(res, 400, { message: "텍스트는 120자 이하로 입력해 주세요." });
+      if (input.length > 40) {
+        return sendJson(res, 400, { message: "Message must be 40 characters or fewer." });
       }
 
       const state = loadState();
       if (state.text) {
         return sendJson(res, 409, {
-          message: "이미 오늘의 현수막이 선점되었습니다. 다음날 다시 시도해 주세요.",
+          message: "Today's banner has already been claimed. Try again after reset.",
           state
         });
       }
@@ -163,7 +163,22 @@ const server = http.createServer(async (req, res) => {
       saveState(nextState);
 
       return sendJson(res, 200, {
-        message: "현수막 선점 완료",
+        message: "Banner claimed",
+        state: nextState
+      });
+    }
+
+    if (req.method === "POST" && req.url === "/api/reset") {
+      const nextState = {
+        dateKey: getDateKey(),
+        text: "",
+        claimedAt: null
+      };
+
+      saveState(nextState);
+
+      return sendJson(res, 200, {
+        message: "Banner reset",
         state: nextState
       });
     }

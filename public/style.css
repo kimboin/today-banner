@@ -1,10 +1,22 @@
 :root {
-  --bg: #f8f4e7;
-  --paper: #fffdf6;
-  --ink: #1f2937;
-  --accent: #b45309;
-  --accent-dark: #7c2d12;
-  --line: #e5d9bc;
+  --bg: #050505;
+  --paper: #0f0f0f;
+  --paper-hover: #151515;
+  --line: #1f1f1f;
+  --ink: #ffffff;
+  --text-secondary: #e5e7eb;
+  --muted: #9ca3af;
+  --disabled: #6b7280;
+  --neon: #22c55e;
+  --neon-hover: #16a34a;
+  --neon-glow: rgba(34, 197, 94, 0.6);
+  --neon-glow-strong: rgba(34, 197, 94, 0.9);
+  --blue: #3b82f6;
+  --blue-hover: #2563eb;
+  --blue-glow: rgba(59, 130, 246, 0.6);
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --danger-glow: rgba(239, 68, 68, 0.6);
 }
 
 * {
@@ -13,8 +25,8 @@
 
 body {
   margin: 0;
-  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  background: radial-gradient(circle at top right, #ffe7a8, var(--bg) 40%);
+  font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background: var(--bg);
   color: var(--ink);
   min-height: 100vh;
 }
@@ -26,65 +38,115 @@ body {
   gap: 20px;
 }
 
-.intro h1 {
-  margin: 0;
-  font-size: 2rem;
-  color: #111827;
-  font-family: "Cormorant Garamond", "Times New Roman", serif;
-  letter-spacing: 0.02em;
+.intro {
+  text-align: center;
 }
 
 .intro-desc {
-  margin: 8px 0 0;
+  margin: 0 auto 0;
   max-width: 760px;
   line-height: 1.6;
-  color: #374151;
+  color: var(--text-secondary);
+}
+
+.intro-sub {
+  margin: 10px auto 0;
+  max-width: 760px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.neon-sub-accent {
+  color: var(--ink);
 }
 
 .banner-box {
-  background: var(--accent);
-  color: #fff9ec;
+  background: #0a0a0a;
+  color: var(--ink);
+  border: 1px solid #22c55e;
   border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 36px 28px;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
+  text-align: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.banner-box:hover {
+  background: var(--paper-hover);
+}
+
+.banner-label {
+  margin: -4px 0 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--neon);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  opacity: 0.9;
+  text-shadow: 0 0 10px var(--neon-glow);
+  text-align: center;
+  font-family: "Space Grotesk", "IBM Plex Sans KR", sans-serif;
 }
 
 .banner-text {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.9rem;
   line-height: 1.5;
   font-weight: 700;
-  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
   word-break: break-word;
+  white-space: pre-line;
+  text-align: center;
 }
 
 .panel {
-  background: var(--paper);
-  border: 1px solid var(--line);
+  background: #0b0b0b;
+  border: 1px solid #1f1f1f;
   border-radius: 16px;
+  margin-top: 14px;
   padding: 24px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(34, 197, 94, 0.05);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.panel:hover {
+  background: #101010;
+}
+
+.time-box {
+  text-align: center;
+  margin: -4px 0 2px;
 }
 
 .time-box p {
   margin: 0;
   font-size: 0.95rem;
+  color: var(--muted);
 }
 
 .time-box strong {
   display: block;
   margin-top: 4px;
   font-size: 1.8rem;
+  color: var(--neon);
+  text-shadow: 0 0 12px var(--neon-glow);
+  font-family: "Space Grotesk", "IBM Plex Sans KR", sans-serif;
 }
 
 .time-box small {
   display: block;
-  color: #5f6368;
+  color: var(--muted);
 }
 
 .claim-form {
   margin-top: 20px;
   display: grid;
   gap: 10px;
+  justify-items: center;
 }
 
 .claim-form label {
@@ -92,32 +154,83 @@ body {
 }
 
 .claim-form input {
+  width: min(560px, 100%);
   padding: 11px 12px;
-  border: 1px solid #c8c8c8;
+  border: 1px solid var(--line);
   border-radius: 10px;
   font-size: 1rem;
+  background: var(--paper);
+  color: var(--ink);
+  text-align: center;
+}
+
+.char-count {
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .claim-form button {
+  width: min(360px, 100%);
   border: 0;
   border-radius: 10px;
   padding: 12px 14px;
   font-size: 1rem;
   font-weight: 700;
-  background: var(--accent-dark);
-  color: #fff;
+  letter-spacing: 0.03em;
+  background: linear-gradient(to bottom, #34d399 0%, var(--neon) 58%, var(--neon-hover) 100%);
+  color: #000000;
   cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 0 18px var(--neon-glow-strong);
+}
+
+.claim-form button:hover:not(:disabled) {
+  background: linear-gradient(to bottom, #4ade80 0%, #22c55e 56%, #16a34a 100%);
+  transform: translateY(-1px);
 }
 
 .claim-form button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  color: var(--disabled);
+  box-shadow: none;
+}
+
+.share-box {
+  margin-top: 14px;
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+}
+
+.share-btn {
+  width: min(360px, 100%);
+  border: 1px solid var(--neon);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: transparent;
+  color: var(--neon);
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.share-btn:hover {
+  background: rgba(34, 197, 94, 0.1);
+  box-shadow: 0 0 14px var(--neon-glow);
+}
+
+.share-status {
+  min-height: 1.2em;
+  color: var(--muted);
 }
 
 .status {
   min-height: 1.4em;
   margin: 14px 0 0;
   font-weight: 700;
+  text-align: center;
 }
 
 @media (max-width: 640px) {
