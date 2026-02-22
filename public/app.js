@@ -44,7 +44,21 @@ async function copyText(text) {
 
 async function copyShareLink() {
   const shareUrl = window.location.href;
+  const shareText = appState?.text
+    ? `Today's banner: "${appState.text}" - claim tomorrow's slot here:`
+    : "One person claims today's banner. Join here:";
+
   try {
+    if (navigator.share) {
+      await navigator.share({
+        title: document.title,
+        text: shareText,
+        url: shareUrl
+      });
+      setShareStatus("Shared successfully.");
+      return;
+    }
+
     await copyText(shareUrl);
     setShareStatus("Share link copied.");
   } catch (err) {

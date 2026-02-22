@@ -3,7 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TodayBanner</title>
+    <title>TodayBanner | Daily First-Come Banner Challenge</title>
+    <meta
+      name="description"
+      content="A global daily challenge where one person claims the only live banner. First claim wins and stays locked until reset."
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#050505" />
+    <meta name="author" content="TodayBanner" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="TodayBanner" />
+    <meta property="og:title" content="TodayBanner | One Person. One Banner. Every Day." />
+    <meta
+      property="og:description"
+      content="Claim today's banner before anyone else. Once claimed, it stays locked until the daily reset."
+    />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="TodayBanner preview image" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TodayBanner | Daily First-Come Banner" />
+    <meta
+      name="twitter:description"
+      content="Only one banner survives each day. Be first and lock it."
+    />
+    <meta name="twitter:image" content="/og-image.png" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2VJL7GYTCW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-2VJL7GYTCW");
+    </script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,9 +49,19 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/style.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "TodayBanner",
+        "url": "/",
+        "description": "A daily first-come banner challenge where one claim wins until reset."
+      }
+    </script>
   </head>
   <body>
     <main class="wrap">
+      <h1 class="sr-only">TodayBanner - Daily first-come banner game</h1>
       <section class="intro">
         <p class="intro-desc">
           One person. One banner. Every day.
@@ -36,7 +84,7 @@
         <small id="resetInfo">Resets daily at 00:00 KST (UTC+9)</small>
       </div>
       <div class="share-box">
-        <button type="button" id="shareBtn" class="share-btn">Copy Share Link</button>
+        <button type="button" id="shareBtn" class="share-btn">Share This Banner</button>
         <small id="shareStatus" class="share-status"></small>
       </div>
 
