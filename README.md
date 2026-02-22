@@ -20,7 +20,7 @@ One person can claim the banner each day. After midnight (by configured timezone
 Set these in Vercel Project Settings (and locally for `vercel dev`):
 
 - `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY` (preferred) or `SUPABASE_SECRET_KEY`
 - `RESET_TIMEZONE` (default: `Asia/Seoul`)
 
 ## Supabase Setup
@@ -41,7 +41,13 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:3000` (default `vercel dev` port).
+Open `http://localhost:4000`.
+
+If you want to run Vercel's local runtime instead, use:
+
+```bash
+npm run dev:vercel
+```
 
 ## API Summary
 - `GET /api/state`: returns today's banner state

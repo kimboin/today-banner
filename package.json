@@ -4,11 +4,15 @@
   "description": "Daily first-come banner lock website",
   "main": "api/state.js",
   "scripts": {
-    "dev": "vercel dev",
-    "start": "vercel dev"
+    "dev": "node local.js",
+    "start": "node local.js",
+    "dev:vercel": "vercel dev"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "vercel": "^50.22.1"
+  }
 }
